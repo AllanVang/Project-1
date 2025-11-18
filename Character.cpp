@@ -1,6 +1,8 @@
 #include "Character.h"
-#include <string>
 #include <iostream>
+#include <iomanip>
+#include <string>
+#include <limits>
 
 using namespace std;
 
@@ -34,3 +36,6 @@ string Character::getSpecies()
 {
 	return Species;
 }
+
+ 
+
