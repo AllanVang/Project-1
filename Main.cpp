@@ -5,50 +5,43 @@ Allan Vang & Mail Lee Lee
 
 ***************************/
 
-#include <iostream>
 #include "Character.h"
+#include "MenuOptions.h"
+#include "ValidInputs.h"
+#include "StartGame.h"
+#include <iostream>
+#include <iomanip>
 #include <string>
 #include <limits>
+
 
 using namespace std;
 
 int main()
 {
-    Character Player;
-    string myName, myGender, mySpecies;
+   
+    displayMenu();//Displays Game Menu
 
+    {
+        int menuChoice = validMenuOption(1, 3);
 
-    cout << "Enter your name [16 max characters]: " << endl;
-    getline(cin, myName);
+        switch (menuChoice)
+        {
+        case 1:
+            // Discards current input
+            cin.ignore(numeric_limits <streamsize>::max(), '\n');
+            startGame(); //Starts the game
+            break;
+        case 2:
+            gameSettings();
+            break;
+        case 3:
+            gameCredits();
+            break;
+        }
+    }
 
-    cout << "\n\nEnter your gender: " << endl;
-    cout << "1. Male" << endl
-         << "2. Female" << endl;
-
-    cin >> myGender;
-
-
-    cout << "\n\nSelect your species: \n"
-        << "--------------------\n\n";
-    
-    cout << "1. Human" << endl
-         << "2. Elf" << endl
-         << "3. Dwarf" << endl
-         << "4. Vampire" << endl
-         << "5. Werewolf" << endl;
-
-    cin >> mySpecies;
-
-    Player.setCharacter(myName, myGender, mySpecies); 
-
-    cout << "\n\nYour build:\n\n"
-        << Player.getName() << ", "
-        << Player.getGender() << ", "
-        << Player.getSpecies() << endl; 
-    
-
-
-  
+    return 0;
 
 }
 
