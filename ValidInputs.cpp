@@ -21,6 +21,7 @@ int validMenuOption(int minValue, int maxValue)
 			|| userMenuInput > maxValue
 			|| cin.peek() != '\n')
 		{
+			clearScreen();
 			cout << "Invalid option.\n";
 			displayMenu();
 
@@ -40,13 +41,55 @@ int validMenuOption(int minValue, int maxValue)
 	return userMenuInput; //return valid user input
 }
 
+int validSpecies(int minNum, int maxNum)
+{
+	int speciesInput;
+	while (true)
+	{
+		cin >> speciesInput; //Asking user for input
+
+		if (cin.fail() || speciesInput < minNum
+			|| speciesInput > maxNum
+			|| cin.peek() != '\n')
+		{
+			clearScreen();
+			cout << "Invalid option.\n";
+			cout << "\n\nSelect your species: \n"
+				<< "--------------------\n\n";
+
+			cout << "1. Human" << endl
+				<< "2. Elf" << endl
+				<< "3. Dwarf" << endl
+				<< "4. Vampire" << endl
+				<< "5. Werewolf" << endl << endl
+				<< "(Enter number 1-5)\n" << endl;
+
+
+			cout << "\n\nEnter a number " << minNum
+				<< " to " << maxNum << ":" << endl;
+			cin.clear(); // Resets error state
+			// Discards input
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		}
+		else
+		{
+			break; //exits loop if input is valid
+		}
+
+	}
+
+	return speciesInput; //return valid user input
+}
+
+
+
 int validuserNum()//User input check, number must be 1 or two
 {
 	int userEntry;
 
 	while (true)
 	{
-		cout << "\nEnter in \"1\" or \"2\" :\n";
+		cout << "\n(Enter in \"1\" or \"2\" )\n";
 		cin >> userEntry;
 
 		if (cin.fail() || userEntry > 2 || userEntry < 1)
